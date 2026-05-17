@@ -124,11 +124,11 @@ def dashboard_data():
     )
 
     # =========================================
-    # TOP CUISINES
-    # =========================================
+# AI RECOMMENDATION
+# =========================================
 
-    top_cuisines = (
-
+    top_cuisine = (
+        
         filtered_df['Cuisines']
 
         .str.split(', ')
@@ -137,27 +137,72 @@ def dashboard_data():
 
         .value_counts()
 
-        .head(5)
+        .idxmax()
     )
 
-    # =========================================
-    # RATING DISTRIBUTION
-    # =========================================
-
-    rating_distribution = (
+    avg_rating_dynamic = round(
 
         filtered_df[
             'Aggregate rating'
-        ]
+        ].mean(),
 
-        .round()
+        1
+    )
+
+    top_area = (
+        
+        filtered_df[
+            'Locality'
+        ]
 
         .value_counts()
 
-        .sort_index()
+        .idxmax()
     )
 
-    # =========================================
+    recommendation = f"""
+    📍 {selected_city} restaurants perform strongly in {top_cuisine} cuisine.
+
+    ⭐ Restaurants with ratings above {avg_rating_dynamic} attract higher customer engagement and votes.
+
+    🔥 {top_area} appears to be one of the most popular food hotspots in {selected_city}.
+    """
+
+        # =========================================
+        # TOP CUISINES
+        # =========================================
+
+    top_cuisines = (
+
+            filtered_df['Cuisines']
+
+            .str.split(', ')
+
+            .explode()
+
+            .value_counts()
+
+            .head(5)
+        )
+
+        # =========================================
+        # RATING DISTRIBUTION
+        # =========================================
+
+    rating_distribution = (
+
+            filtered_df[
+                'Aggregate rating'
+            ]
+
+            .round()
+
+            .value_counts()
+
+            .sort_index()
+        )
+
+# =========================================
 # TOP RESTAURANT RATINGS
 # =========================================
 
@@ -240,6 +285,9 @@ def dashboard_data():
 
         'total_votes':
         total_votes,
+
+         'ai_recommendation':
+        recommendation,
 
         'top_cuisines':
         top_cuisines.to_dict(),

@@ -92,6 +92,15 @@ async function loadDashboard() {
             data.total_votes;
 
         // =========================================
+// AI RECOMMENDATION
+// =========================================
+
+        document.getElementById(
+            'ai-recommendation'
+        ).innerHTML =
+            data.ai_recommendation;    
+
+        // =========================================
         // TABLE
         // =========================================
 
