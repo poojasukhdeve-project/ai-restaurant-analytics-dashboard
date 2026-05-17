@@ -28,10 +28,16 @@ app = Flask(
 # LOAD DATASET
 # =====================================================
 
-df = pd.read_csv(
-    '../data/zomato.csv',
-    encoding='latin1'
-)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+csv_path = os.path.join(BASE_DIR, '..', 'data', 'zomato.csv')
+
+df = pd.read_csv(csv_path, encoding='latin1')
+
+# df = pd.read_csv(
+#    '../data/zomato.csv',
+#    encoding='latin1'
+#)
 
 # =====================================================
 # INDIA DATA ONLY
