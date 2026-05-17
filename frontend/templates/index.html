@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        India Restaurant Analytics Dashboard
+    </title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- FONT AWESOME -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CHART JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ===================================================== -->
+    <!-- SIDEBAR -->
+    <!-- ===================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>
+                🍽 Restaurant Analytics
+            </h2>
+
+        </div>
+
+        <ul class="menu">
+
+            <li class="active">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Dashboard
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-utensils"></i>
+
+                Restaurants
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-map-location-dot"></i>
+
+                Map View
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-star"></i>
+
+                Top Restaurants
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                Reviews Analysis
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-robot"></i>
+
+                AI Assistant
+
+            </li>
+
+            <li>
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                About
+
+            </li>
+
+        </ul>
+
+        <!-- SIDEBAR CARD -->
+
+        <div class="sidebar-card">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
+
+            <h3>
+
+                Discover. Analyze. Improve.
+
+            </h3>
+
+            <p>
+
+                Explore restaurant insights across
+                major Indian cities using Zomato analytics
+                and AI-powered recommendations.
+
+            </p>
+
+        </div>
+
+    </aside>
+
+    <!-- ===================================================== -->
+    <!-- MAIN CONTENT -->
+    <!-- ===================================================== -->
+
+    <main class="main-content">
+
+        <!-- ===================================================== -->
+        <!-- HEADER -->
+        <!-- ===================================================== -->
+
+        <div class="top-header">
+
+            <div>
+
+                <h1>
+
+                    🇮🇳 Restaurant Analytics Dashboard
+
+                </h1>
+
+                <p>
+
+                    AI Powered Insights from Zomato India Dataset
+
+                </p>
+
+            </div>
+
+            <div class="header-icons">
+
+                <i class="fa-solid fa-sun"></i>
+
+                <div class="ai-icon">
+
+                    AI
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- FILTERS -->
+        <!-- ===================================================== -->
+
+        <div class="filters">
+
+            <!-- COUNTRY -->
+
+            <div class="filter-box">
+
+                <label>
+
+                    Country
+
+                </label>
+
+                <input type="text"
+                       value="India"
+                       readonly>
+
+            </div>
+
+            <!-- CITY -->
+
+            <div class="filter-box">
+
+                <label>
+
+                    City
+
+                </label>
+
+                <select id="city-select">
+
+                    <option value="Bangalore">
+
+                        Bangalore
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- CUISINE -->
+
+            <div class="filter-box">
+
+                <label>
+
+                    Cuisine
+
+                </label>
+
+                <select>
+
+                    <option>
+
+                        All
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- PRICE -->
+
+            <div class="filter-box">
+
+                <label>
+
+                    Price Range
+
+                </label>
+
+                <input type="range"
+                       min="100"
+                       max="5000">
+
+            </div>
+
+            <!-- RESET -->
+
+            <button class="reset-btn">
+
+                <i class="fa-solid fa-rotate-right"></i>
+
+                Reset Filters
+
+            </button>
+
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- KPI CARDS -->
+        <!-- ===================================================== -->
+
+        <div class="cards">
+
+            <!-- CARD 1 -->
+
+            <div class="card">
+
+                <div class="card-icon purple">
+
+                    <i class="fa-solid fa-utensils"></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <p>
+
+                        Total Restaurants
+
+                    </p>
+
+                    <h2 id="restaurants-count">
+
+                        0
+
+                    </h2>
+
+                    <span>
+
+                        Restaurants in selected city
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 2 -->
+
+            <div class="card">
+
+                <div class="card-icon green">
+
+                    <i class="fa-solid fa-star"></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <p>
+
+                        Average Rating
+
+                    </p>
+
+                    <h2 id="avg-rating">
+
+                        0
+
+                    </h2>
+
+                    <span>
+
+                        Restaurant ratings
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 3 -->
+
+            <div class="card">
+
+                <div class="card-icon yellow">
+
+                    <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <p>
+
+                        Average Cost
+
+                    </p>
+
+                    <h2 id="avg-cost">
+
+                        ₹0
+
+                    </h2>
+
+                    <span>
+
+                        Average cost for two
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 4 -->
+
+            <div class="card">
+
+                <div class="card-icon blue">
+
+                    <i class="fa-solid fa-thumbs-up"></i>
+
+                </div>
+
+                <div class="card-info">
+
+                    <p>
+
+                        Total Votes
+
+                    </p>
+
+                    <h2 id="total-votes">
+
+                        0
+
+                    </h2>
+
+                    <span>
+
+                        Customer engagement
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- DASHBOARD GRID -->
+        <!-- ===================================================== -->
+
+        <div class="dashboard-grid">
+
+            <!-- ================================================= -->
+            <!-- LEFT SECTION -->
+            <!-- ================================================= -->
+
+            <div class="left-grid">
+
+                <!-- ROW 1 -->
+
+                <div class="chart-row">
+
+                    <!-- RATING DISTRIBUTION -->
+
+                    <div class="chart-card">
+
+                        <h3>
+
+                            ⭐ Rating Distribution
+
+                        </h3>
+
+                        <canvas id="ratingChart"></canvas>
+
+                    </div>
+
+                    <!-- TOP CUISINES -->
+
+                    <div class="chart-card">
+
+                        <h3>
+
+                            🍽 Top Cuisines
+
+                        </h3>
+
+                        <canvas id="cuisineChart"></canvas>
+
+                    </div>
+
+                </div>
+
+                <!-- ROW 2 -->
+
+                <div class="chart-row">
+
+                    <!-- TOP RESTAURANT RATINGS -->
+
+                    <div class="chart-card">
+
+                        <h3>
+
+                            ⭐ Top Restaurant Ratings
+
+                        </h3>
+
+                        <canvas id="topRatedChart"></canvas>
+
+                    </div>
+
+                    <!-- CUISINE POPULARITY -->
+
+                    <div class="chart-card">
+
+                        <h3>
+
+                            🍕 Cuisine Popularity
+
+                        </h3>
+
+                        <canvas id="cuisinePopularityChart"></canvas>
+
+                    </div>
+
+                </div>
+
+                <!-- ================================================= -->
+                <!-- TABLE + MAP -->
+                <!-- ================================================= -->
+
+                <div class="bottom-grid">
+
+                    <!-- TABLE -->
+
+                    <div class="table-card">
+
+                        <div class="table-header">
+
+                            <h3>
+
+                                🍴 Top 10 Restaurants
+
+                            </h3>
+
+                        </div>
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Name</th>
+
+                                    <th>City</th>
+
+                                    <th>Cuisine</th>
+
+                                    <th>Rating</th>
+
+                                    <th>Votes</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="restaurant-table-body">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <!-- MAP -->
+
+                    <div class="map-card">
+
+                        <h3>
+
+                            📍 Restaurant Locations
+
+                        </h3>
+
+                        <div class="map-placeholder">
+
+                            <i class="fa-solid fa-map-location-dot"></i>
+
+                            <p>
+
+                                Interactive Restaurant Map
+                                Coming Soon
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ================================================= -->
+            <!-- RIGHT PANEL -->
+            <!-- ================================================= -->
+
+            <div class="right-panel">
+
+                <!-- AI RECOMMENDATION -->
+
+                <div class="recommendation-card">
+
+                    <h3>
+
+                        <i class="fa-solid fa-brain"></i>
+
+                        AI Recommendation
+
+                    </h3>
+
+                    <div class="recommendation-box">
+
+                        <h4>
+
+                            📈 Restaurant trends are improving
+
+                        </h4>
+
+                        <p>
+
+                            Higher-rated restaurants usually
+                            have stronger customer engagement,
+                            better cuisine diversity, and
+                            higher customer votes.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- ================================================= -->
+                <!-- AI CHAT -->
+                <!-- ================================================= -->
+
+                <div class="ai-chat-card">
+
+                    <h3>
+
+                        <i class="fa-solid fa-robot"></i>
+
+                        AI Restaurant Assistant
+
+                    </h3>
+
+                    <div class="chat-box">
+
+                    </div>
+
+                    <div class="chat-input">
+
+                        <input type="text"
+                               id="user-question"
+                               placeholder="Ask AI about restaurants, cuisines, ratings, budgets...">
+
+                        <button onclick="sendMessage()">
+
+                            <i class="fa-solid fa-paper-plane"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- ===================================================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================================================== -->
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
