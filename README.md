@@ -119,262 +119,192 @@ Visit **http://127.0.0.1:5000** in your browser.
 ### AI Assistant Queries
 Try these example questions:
 
-
-
-
-
-
-
-
+"Best restaurants in Bangalore under ₹500"
+"Which cuisine is most popular in Hyderabad?"
+"Top-rated restaurants in Pune"
+"Recommend budget-friendly options in Nagpur"
+"What are the highest-rated North Indian restaurants?"
 
 ---
 
-# 🚀 Features
+## 📂 Project Structure
 
-## 📊 Interactive Analytics Dashboard
-- KPI Cards
-  - Total Restaurants
-  - Average Rating
-  - Average Cost
-  - Total Votes
-
-- Interactive Charts
-  - Rating Distribution
-  - Top Cuisines
-  - Top Restaurant Ratings
-  - Cuisine Popularity
-
-- Dynamic Restaurant Table
-  - Top 10 restaurants
-  - Ratings
-  - Votes
-  - Cuisine information
-
----
-
-# 🤖 AI Restaurant Assistant
-
-Integrated AI-powered restaurant assistant using **Hugging Face LLM API**.
-
-The AI assistant can answer questions like:
-- Best restaurants in Bangalore
-- Budget-friendly restaurants
-- Popular cuisines in a city
-- Highest-rated restaurants
-- Restaurant recommendations
-- Cost analysis
-- Customer insights
-
----
-
-# 🏙️ Supported Indian Cities
-
-The dashboard supports multiple Indian cities including:
-
-- Bangalore
-- Chennai
-- Goa
-- Hyderabad
-- Kolkata
-- Lucknow
-- Mohali
-- Panchkula
-- Pune
-- Secunderabad
-- Ahmedabad
-- Chandigarh
-- Nagpur
-- Mumbai
-- Delhi
-- Jaipur
-- Surat
-- Vadodara
-- Kochi
-- Coimbatore
-
-and more.
-
----
-
-# 🛠️ Tech Stack
-
-## Frontend
-- HTML5
-- CSS3
-- JavaScript
-- Chart.js
-
-## Backend
-- Python
-- Flask
-
-## AI Integration
-- Hugging Face Inference API
-
-## Dataset
-- Zomato India Dataset
-
----
-
-# 📈 Dashboard Preview
-
-## Main Dashboard
-- Modern dark-themed analytics interface
-- Interactive charts and filters
-- AI-powered insights
-
-## AI Assistant
-- Smart restaurant recommendations
-- Budget analysis
-- Cuisine insights
-- Natural language interaction
-
----
-
-# 📂 Project Structure
-
-```bash
 ai-restaurant-analytics-dashboard/
 │
 ├── backend/
-│   ├── app.py
-│   ├── preprocess.py
-│   ├── ml_model.py
-│   └── sentiment_model.py
+│   ├── app.py                  # Flask application entry point
+│   ├── preprocess.py           # Data cleaning and transformation
+│   ├── ml_model.py             # Hugging Face LLM integration
+│   └── sentiment_model.py      # Sentiment analysis (future)
 │
 ├── frontend/
 │   ├── static/
 │   │   ├── css/
+│   │   │   └── style.css       # Dashboard styling
 │   │   ├── js/
+│   │   │   ├── dashboard.js    # Chart.js visualizations
+│   │   │   └── ai-assistant.js # AI chat interface
 │   │   └── images/
+│   │       └── logo.png
 │   │
 │   └── templates/
-│       └── index.html
+│       └── index.html          # Main dashboard template
 │
 ├── data/
-│   ├── zomato.csv
-│   ├── reviews.csv
-│   └── Country-Code.xlsx
+│   ├── zomato.csv              # Primary restaurant dataset
+│   ├── reviews.csv             # Customer reviews (optional)
+│   └── Country-Code.xlsx       # Country code mapping
 │
-├── requirements.txt
-└── README.md
+├── assets/
+│   └── dashboard-preview.png   # README screenshots
+│
+├── .env.example                # Environment variables template
+├── .gitignore
+├── requirements.txt            # Python dependencies
+├── README.md
+└── LICENSE
+
+---
+
+
+## 🔌 API Endpoints
+
+### GET `/api/restaurants`
+Fetch all restaurants with optional filters.
+
+**Query Parameters:**
+- `city` (optional): Filter by city name
+- `cuisine` (optional): Filter by cuisine type
+
+**Response:**
+```json
+{
+  "total": 9551,
+  "restaurants": [
+    {
+      "name": "Empire Restaurant",
+      "city": "Bangalore",
+      "cuisine": "North Indian, Chinese",
+      "rating": 4.1,
+      "votes": 10934,
+      "cost": 800
+    }
+  ]
+}
+```
+
+### POST `/api/ai-query`
+Send natural language query to AI assistant.
+
+**Request Body:**
+```json
+{
+  "query": "Best restaurants in Bangalore under 500"
+}
+```
+
+**Response:**
+```json
+{
+  "response": "Here are the top budget-friendly restaurants...",
+  "recommendations": [...]
+}
 ```
 
 ---
 
-# ⚙️ Installation
+## 📊 Insights & Analytics
 
-## 1️⃣ Clone Repository
+Key findings from the dataset analysis:
 
-```bash
-git clone https://github.com/YOUR_USERNAME/ai-restaurant-analytics-dashboard.git
-```
+| Metric | Value |
+|--------|-------|
+| **Total Restaurants** | 9,551 |
+| **Cities Covered** | 15+ |
+| **Average Rating** | 3.7/5 |
+| **Price Range** | ₹50 - ₹6,000 |
+| **Most Popular Cuisine** | North Indian (30.3%) |
+| **Highest Rated City** | Bangalore (avg 3.9) |
+| **Most Active Users** | 1.2M+ votes |
 
----
-
-## 2️⃣ Navigate to Project
-
-```bash
-cd ai-restaurant-analytics-dashboard
-```
-
----
-
-## 3️⃣ Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
+### Top 5 Cuisines
+1. North Indian - 2,890 restaurants
+2. Chinese - 1,854 restaurants
+3. Fast Food - 1,421 restaurants
+4. South Indian - 1,230 restaurants
+5. Continental - 987 restaurants
 
 ---
 
-## 4️⃣ Add Hugging Face API Key
+## 📸 Screenshots
 
-Create a `.env` file:
+### Main Dashboard
+![Dashboard](assets/dashboard.png)
 
-```env
-HUGGINGFACE_API_KEY=your_api_key_here
-```
+### AI Assistant
+![AI Chat](assets/ai-assistant.png)
 
----
-
-## 5️⃣ Run Application
-
-```bash
-python backend/app.py
-```
+### Charts & Visualizations
+![Charts](assets/charts.png)
 
 ---
 
-# 🌐 Open in Browser
+## 🎯 Future Enhancements
 
-```bash
-http://127.0.0.1:5000
-```
-
----
-
-# 📊 Example AI Questions
-
-Try asking:
-
-- Best restaurants in Bangalore
-- Popular cuisines in Goa
-- Recommend restaurants under ₹500
-- Highest rated restaurants in Pune
-- Which cuisine is most popular in Hyderabad?
-- Budget-friendly restaurants in Nagpur
-- Top cafes in Bangalore
-- Restaurants with highest customer votes
+- [ ] **Map Integration**: Leaflet.js for restaurant locations
+- [ ] **Sentiment Analysis**: Analyze customer reviews with NLP
+- [ ] **User Authentication**: Save preferences and favorites
+- [ ] **Advanced Filters**: Dietary restrictions, ambiance, parking
+- [ ] **Mobile App**: React Native companion app
+- [ ] **Real-time Updates**: Live restaurant data integration
+- [ ] **Recommendation Engine**: Collaborative filtering
+- [ ] **Cloud Deployment**: AWS/Heroku hosting
 
 ---
 
-# 🎯 Project Goals
+## 🤝 Contributing
 
-This project was designed to:
-- Analyze restaurant business trends
-- Visualize customer preferences
-- Build an AI-powered analytics dashboard
-- Demonstrate full-stack development skills
-- Integrate LLM APIs into business applications
+Contributions are welcome! Please follow these steps:
 
----
-
-# 💡 Key Highlights
-
-✅ Full-Stack Dashboard  
-✅ Interactive Data Visualization  
-✅ AI-Powered Assistant  
-✅ Business Intelligence Insights  
-✅ Real Dataset Analysis  
-✅ Dynamic Filtering  
-✅ Modern UI/UX  
-✅ Recruiter-Friendly Portfolio Project
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-# 📌 Future Improvements
+## 📄 License
 
-- Live Maps Integration
-- Restaurant Sentiment Analysis
-- User Authentication
-- Cloud Deployment
-- Real-time Data Updates
-- Recommendation Engine
-- Advanced NLP Insights
-- Mobile Responsive Optimization
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-# 👩‍💻 Author
+## 👩‍💻 Author
 
-### Pooja Sukhdeve
+**Pooja Sukhdeve**  
+Master's in Computer Science | Boston University Metropolitan College
 
-Master's Student in Computer Science  
-Boston University Metropolitan College
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](YOUR_LINKEDIN)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-green)](YOUR_PORTFOLIO)
+[![Email](https://img.shields.io/badge/Email-Contact-red)](mailto:your.email@example.com)
 
 ---
 
-# ⭐ If you like this project
+## 🙏 Acknowledgments
 
-Give this repository a ⭐ on GitHub!
+- [Zomato](https://www.zomato.com/) for the dataset
+- [Hugging Face](https://huggingface.co/) for LLM API
+- [Chart.js](https://www.chartjs.org/) for visualization library
+- [Flask](https://flask.palletsprojects.com/) community
+
+---
+
+<div align="center">
+
+**If you found this project helpful, please consider giving it a ⭐!**
+
+Made with ❤️ by Pooja Sukhdeve
+
+</div>
+
