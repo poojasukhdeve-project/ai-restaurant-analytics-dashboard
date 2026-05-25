@@ -1,7 +1,131 @@
 # 🍽️ AI-Powered Restaurant Analytics Dashboard
 
-An interactive full-stack restaurant analytics dashboard built using **Flask, Chart.js, JavaScript, and Hugging Face LLM API**.  
-This project analyzes restaurant trends, ratings, cuisines, budgets, and customer engagement using the Zomato India dataset.
+An intelligent full-stack analytics platform that analyzes **9,551 restaurants** across 15+ Indian cities using the Zomato dataset. Built with Flask, Chart.js, and Hugging Face LLM API for conversational business intelligence.
+
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](YOUR_DEMO_LINK)
+[![GitHub](https://img.shields.io/badge/github-repo-blue)](YOUR_GITHUB_LINK)
+
+![Dashboard Preview](assets/dashboard-preview.png)
+
+---
+
+## 📋 Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [API Endpoints](#api-endpoints)
+- [Insights & Analytics](#insights--analytics)
+- [Screenshots](#screenshots)
+- [Future Enhancements](#future-enhancements)
+- [Contributing](#contributing)
+- [License](#license)
+- [Author](#author)
+
+---
+
+## ✨ Features
+
+### 📊 Interactive Analytics Dashboard
+- **Real-time KPI Cards**: Total restaurants, average ratings, cost, and votes
+- **Dynamic Visualizations**: Rating distribution, cuisine popularity, top restaurants
+- **City Filtering**: Analyze data across 15+ Indian cities
+- **Responsive Design**: Modern dark-themed UI
+
+### 🤖 AI Restaurant Assistant
+- **Natural Language Queries**: Ask questions in plain English
+- **Smart Recommendations**: Budget-based and cuisine-specific suggestions
+- **Instant Insights**: Powered by Hugging Face LLM API
+- **Context-Aware Responses**: Understands restaurant domain
+
+### 📈 Business Intelligence
+- Cuisine trend analysis across cities
+- Budget distribution and pricing patterns
+- Customer engagement metrics (ratings & votes)
+- Top-performing restaurants identification
+
+---
+
+## 🛠️ Tech Stack
+
+**Backend**
+- Python 3.8+
+- Flask (REST API)
+- Pandas (Data processing)
+
+**Frontend**
+- HTML5, CSS3, JavaScript
+- Chart.js (Data visualization)
+- Responsive design
+
+**AI/ML**
+- Hugging Face Inference API
+- Natural Language Processing
+
+**Dataset**
+- Zomato India Dataset (9,551 restaurants)
+
+---
+
+## 🚀 Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- pip package manager
+- Hugging Face API key ([Get it here](https://huggingface.co/settings/tokens))
+
+### Step 1: Clone Repository
+```bash
+git clone https://github.com/YOUR_USERNAME/ai-restaurant-analytics-dashboard.git
+cd ai-restaurant-analytics-dashboard
+```
+
+### Step 2: Create Virtual Environment
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+### Step 3: Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Step 4: Configure Environment Variables
+Create a `.env` file in the root directory:
+```env
+HUGGINGFACE_API_KEY=your_api_key_here
+FLASK_ENV=development
+```
+
+### Step 5: Run the Application
+```bash
+python backend/app.py
+```
+
+Visit **http://127.0.0.1:5000** in your browser.
+
+---
+
+## 💡 Usage
+
+### Dashboard Navigation
+1. **Select City**: Use dropdown to filter restaurants by city
+2. **View Analytics**: Explore KPI cards and interactive charts
+3. **Browse Restaurants**: Scroll through top-rated establishments
+
+### AI Assistant Queries
+Try these example questions:
+
+
+
+
+
+
+
+
 
 ---
 
