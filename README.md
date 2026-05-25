@@ -128,7 +128,7 @@ Try these example questions:
 ---
 
 ## 📂 Project Structure
-
+```text
 ai-restaurant-analytics-dashboard/
 │
 ├── backend/
@@ -163,7 +163,7 @@ ai-restaurant-analytics-dashboard/
 ├── requirements.txt            # Python dependencies
 ├── README.md
 └── LICENSE
-
+```
 ---
 
 
