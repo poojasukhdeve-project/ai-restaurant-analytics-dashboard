@@ -123,7 +123,7 @@ def dashboard_data():
         ].sum()
     )
 
-    # =========================================
+# =========================================
 # AI RECOMMENDATION
 # =========================================
 
@@ -319,6 +319,106 @@ def dashboard_data():
 # =====================================================
 
 def ask_huggingface(prompt):
+
+    API_URL = "https://router.huggingface.co/v1/chat/completions"
+
+    if not HF_TOKEN:
+        return "❌ AI Error: HF_TOKEN is not configured."
+
+    headers = {
+        "Authorization": f"Bearer {HF_TOKEN}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "model": "meta-llama/Llama-3.1-8B-Instruct",
+
+        "messages": [
+            {
+                "role": "system",
+                "content": """
+You are an AI Restaurant Analytics Assistant.
+
+Rules:
+- Use ONLY provided dataset insights
+- Never invent fake restaurants
+- Keep answers concise
+- Use short bullet points
+- Focus on ratings, cuisines, votes, and pricing
+- Sound premium and modern
+- Avoid long paragraphs
+- Respond like a business dashboard AI
+"""
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+
+        "max_tokens": 120,
+        "temperature": 0.4
+    }
+
+    try:
+
+        response = requests.post(
+            API_URL,
+            headers=headers,
+            json=payload,
+            timeout=60
+        )
+
+        result = response.json()
+
+        # Show the real Hugging Face error
+        if response.status_code != 200:
+
+            error_message = result.get("error", result)
+
+            return f"""
+❌ Hugging Face API Error
+
+Status Code: {response.status_code}
+
+Details:
+{error_message}
+"""
+
+        # Make sure choices exists
+        if "choices" not in result:
+
+            return f"""
+❌ AI Error
+
+Unexpected Hugging Face response:
+
+{result}
+"""
+
+        return result["choices"][0]["message"]["content"]
+
+    except requests.exceptions.RequestException as e:
+
+        return f"""
+❌ AI Connection Error
+
+{str(e)}
+"""
+
+    except Exception as e:
+
+        return f"""
+❌ AI Error
+
+{str(e)}
+"""
+
+# =====================================================
+# HUGGINGFACE API
+# =====================================================
+
+#def ask_huggingface(prompt):
 
     API_URL = (
         "https://router.huggingface.co/v1/chat/completions"
