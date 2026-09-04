@@ -5,25 +5,6 @@ An intelligent full-stack analytics platform that analyzes **9,551 restaurants**
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](YOUR_DEMO_LINK)
 [![GitHub](https://img.shields.io/badge/github-repo-blue)](YOUR_GITHUB_LINK)
 
-![Dashboard Preview](assets/dashboard-preview.png)
-
----
-
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [API Endpoints](#api-endpoints)
-- [Insights & Analytics](#insights--analytics)
-- [Screenshots](#screenshots)
-- [Future Enhancements](#future-enhancements)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
-
 ---
 
 ## ✨ Features
